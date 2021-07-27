@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '2.7.0'
+ruby '3.0.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.0'
+gem 'rails', '~> 6.1.4'
 gem 'rails-i18n', '~> 6.0.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.2.2'
@@ -23,7 +23,7 @@ gem 'bootstrap', '~> 4.4.1'
 # Devise is a complete User Management for Rails apps
 gem 'devise', '~> 4.7.1'
 # ActiveAdmin is a complete Admin Dashboard for Rails apps
-gem 'activeadmin', '~> 2.6.1'
+gem 'activeadmin', '~> 2.9.0'
 # RedCarpet allow text parsing like Markdown and links/image inside text
 gem 'redcarpet', '~> 3.4.0'
 # CodeRay is used for syntax Highlight on HTML
@@ -31,7 +31,9 @@ gem 'coderay', '~> 1.1.1'
 # Icons and other beautiful assets
 gem 'font-awesome-rails', '~> 4.7.0.1'
 # Meta Tags is a simple way to improve SEO of dynamic pages on Rails
-gem 'meta-tags', '~> 2.13.0'
+gem 'meta-tags', '~> 2.14.0'
+# MiniMagic is now independent from Ruby
+gem 'mimemagic', '~> 0.4.3'
 
 group :development, :test do
   # Rubocop Gems should always be updated
@@ -49,7 +51,7 @@ end
 
 group :development do
   gem 'spring'
-  gem 'listen', '~> 3.1.5'
+  gem 'listen', '~> 3.6.0'
 end
 
 group :production do
