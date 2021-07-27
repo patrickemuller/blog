@@ -25,7 +25,7 @@ gem 'devise', '~> 4.7.1'
 # ActiveAdmin is a complete Admin Dashboard for Rails apps
 gem 'activeadmin', '~> 2.9.0'
 # RedCarpet allow text parsing like Markdown and links/image inside text
-gem 'redcarpet', '~> 3.4.0'
+gem 'redcarpet', '~> 3.5.1'
 # CodeRay is used for syntax Highlight on HTML
 gem 'coderay', '~> 1.1.1'
 # Icons and other beautiful assets
