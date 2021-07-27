@@ -20,14 +20,8 @@ Style/HashTransformKeys:
 Style/HashTransformValues:
   Enabled: false
 
-GetText/DecorateString:
-  Enabled: false
-
-RailsI18n/DecorateString:
-  Enabled: false
-
 AllCops:
-  TargetRubyVersion: 2.7
+  NewCops: enable
   Exclude:
     - 'bin/**/*'
     - 'config/**/*'

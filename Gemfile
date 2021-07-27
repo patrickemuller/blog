@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 ruby '3.0.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.4'
+gem 'puma'
 gem 'rails-i18n', '~> 6.0.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.2.2'
