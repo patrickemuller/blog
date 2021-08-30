@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -7,14 +9,15 @@ Rails.application.configure do
   config.cache_classes = false
 
   # Do not eager load code on boot.
-  config.eager_load = false
+  config.eager_load = true
 
   # Show full error reports.
-  config.consider_all_requests_local = true
+  # Not strictly necessary, but it makes for nicer output when debugging using curl or a client library
+  config.consider_all_requests_local = false
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp', 'caching-dev.txt').exist?
+  if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
@@ -55,13 +58,13 @@ Rails.application.configure do
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
-  if ENV['RUNNING_ON_LINUX'] == 'true'
-    config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-  else
-    # On Windows/MacOS the standard fiel event watcher doesn't work
-    # and a server reload is needed on EVERY file change (except HTML)
-    config.file_watcher = ActiveSupport::FileUpdateChecker
-  end
+  config.file_watcher = if ENV['RUNNING_ON_LINUX'] == 'true'
+                          ActiveSupport::EventedFileUpdateChecker
+                        else
+                          # On Windows/MacOS the standard fiel event watcher doesn't work
+                          # and a server reload is needed on EVERY file change (except HTML)
+                          ActiveSupport::FileUpdateChecker
+                        end
 
   # Add hosts that Rails 6 will allow requests on development
   config.hosts << 'www.example.com'

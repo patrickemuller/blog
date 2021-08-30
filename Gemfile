@@ -35,6 +35,10 @@ gem 'font-awesome-rails', '~> 4.7.0.1'
 gem 'meta-tags', '~> 2.14.0'
 # MiniMagic is now independent from Ruby
 gem 'mimemagic', '~> 0.4.3'
+# Correctly manage CORS for Rails Applications
+gem 'rack-cors'
+# JSONAPI resources compliance gem
+gem 'jsonapi-resources', '0.10.5'
 
 group :development, :test do
   # Rubocop Gems should always be updated
