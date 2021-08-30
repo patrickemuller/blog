@@ -18,7 +18,7 @@
             h2.post-title
               = post.title
             h3.post-subtitle
-              = truncate(strip_tags(convert_to_markdown(post.body)), length: 140)
+              = post.striped_body
           p.post-meta
             / | Posted by
             / a href="#"  Start Bootstrap
