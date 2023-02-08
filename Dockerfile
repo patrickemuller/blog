@@ -1,4 +1,4 @@
-FROM ruby:2.7.0
+FROM ruby:3.2.1
 # Update the Packages
 RUN apt-get update
 # Install container dependencies, including NodeJS
