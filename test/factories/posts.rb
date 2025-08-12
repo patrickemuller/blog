@@ -20,9 +20,7 @@ FactoryBot.define do
         ```
 
         This approach is much more memory-efficient, especially when dealing with large datasets. The `pluck` method returns an array of values directly from the database, bypassing the overhead of instantiating ActiveRecord objects.
-
         I've found this particularly useful in reporting features where I need to generate CSV exports or create dropdown options. The performance difference becomes noticeable when working with thousands of records.
-
         What's your favorite ActiveRecord method for optimizing database queries? I'd love to hear about other techniques you use in your Rails applications!
       MARKDOWN
     end

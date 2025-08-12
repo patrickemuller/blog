@@ -249,6 +249,7 @@ GEM
     rdoc (6.14.2)
       erb
       psych (>= 4.0.0)
+    redcarpet (3.6.1)
     regexp_parser (2.11.1)
     reline (0.6.2)
       io-console (~> 0.5)
@@ -256,6 +257,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.4.1)
+    rouge (4.6.0)
     rubocop (1.79.2)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
@@ -360,6 +362,8 @@ DEPENDENCIES
   propshaft
   puma (>= 5.0)
   rails!
+  redcarpet (~> 3.6.1)
+  rouge (~> 4.6.0)
   rubocop-rails-omakase
   selenium-webdriver
   sqlite3 (~> 2.0.2)
@@ -368,6 +372,9 @@ DEPENDENCIES
   thruster
   turbo-rails
   tzinfo-data
+
+RUBY VERSION
+   ruby 3.4.5p51
 
 BUNDLED WITH
    2.6.9

@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+ruby "3.4.5"
+
 # Use specific branch of Rails
 gem "rails", github: "rails/rails", branch: "8-0-stable"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
@@ -40,6 +42,10 @@ gem "devise", "~> 4.9"
 
 # URL friendly slugs
 gem "friendly_id", "~> 5.5.0"
+
+# Markdown rendering
+gem "redcarpet", "~> 3.6.1"
+gem "rouge", "~> 4.6.0"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
