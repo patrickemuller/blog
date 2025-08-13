@@ -4,6 +4,9 @@ class Post < ApplicationRecord
 
   friendly_id :title, use: :slugged
 
+  searchkick word_start: [ :title, :body ],
+             word_middle: [ :title, :body ]
+
   validates :title, :body, presence: true
 
   def formatted_body

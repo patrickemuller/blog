@@ -25,6 +25,10 @@ gem "jbuilder"
 # Rails cache
 gem "solid_cache"
 
+# Fulltext search and other goodies
+gem "searchkick"
+gem "opensearch-ruby"
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
