@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.search(params[:term].presence || "*")
   end
 
   # GET /posts/1 or /posts/1.json
@@ -55,11 +55,6 @@ class PostsController < ApplicationController
       format.html { redirect_to posts_path, notice: "Post was successfully destroyed.", status: :see_other }
       format.json { head :no_content }
     end
-  end
-
-  def search
-    @posts = Post.search(params[:search].presence || "*")
-    render :index
   end
 
   private

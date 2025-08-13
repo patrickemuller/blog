@@ -1,36 +1,50 @@
-<% content_for :title, "Posts" %>
+<% content_for :title, "Blog" %>
 
 <div class="w-full">
   <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-700 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
   <% end %>
 
-  <% if user_signed_in? %>
-    <div class="flex justify-between items-center">
-      <%= link_to "New post", new_post_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
-    </div>
-  <% end %>
-
-  <div id="posts" class="min-w-full divide-y divide-gray-200 space-y-5">
-    <% if @posts.any? %>
-      <% @posts.each do |post| %>
-        <div class="flex flex-col items-center pb-5 sm:pb-0">
-          <%= link_to post, class: "w-full" do %>
-            <h2 class="font-bold text-2xl"><%= post.title %></h2>
-          <% end %>
-
-          <% if user_signed_in? %>
-            <div class="w-full flex flex-col sm:flex-row space-x-2 space-y-2">
-              <%= link_to "Show", post, class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-              <%= link_to "Edit", edit_post_path(post), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-              <%= button_to "Destroy", post, method: :delete, class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
-            </div>
-          <% end %>
-          <hr>
-        </div>
+  <div class="mx-auto w-full px-4 sm:px-6 lg:px-8">
+    <header class="flex items-center justify-between py-8">
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900">Latest Posts</h1>
+      <% if user_signed_in? %>
+        <%= link_to "New post", new_post_path, class: "rounded-md px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold shadow-sm" %>
       <% end %>
-    <% else %>
-      <p class="text-center my-10">No posts found.</p>
-    <% end %>
+    </header>
+
+    <div id="posts" class="divide-y divide-gray-200">
+      <% if @posts.any? %>
+        <% @posts.each do |post| %>
+          <article class="py-8">
+            <header class="mb-3">
+              <h2 class="text-2xl font-bold text-gray-900">
+                <%= link_to post.title, post, class: "hover:text-blue-600 transition-colors" %>
+              </h2>
+              <p class="mt-1 text-sm text-gray-500">
+                <time datetime="<%= post.created_at.iso8601 %>"><%= post.created_at.strftime("%B %-d, %Y") %></time>
+              </p>
+            </header>
+
+            <p class="mt-4 text-gray-700 leading-7">
+              <%= truncate(strip_tags(post.formatted_body), length: 220, separator: ' ') %>
+            </p>
+
+            <div class="mt-6 flex items-center justify-between">
+              <%= link_to "Read more →", post, class: "text-blue-600 hover:text-blue-500 font-semibold" %>
+              <% if user_signed_in? %>
+                <div class="flex items-center gap-2">
+                  <%= link_to "Show", post, class: "text-sm rounded-md px-3 py-1.5 bg-gray-100 hover:bg-gray-50 font-medium" %>
+                  <%= link_to "Edit", edit_post_path(post), class: "text-sm rounded-md px-3 py-1.5 bg-gray-100 hover:bg-gray-50 font-medium" %>
+                  <%= button_to "Destroy", post, method: :delete, class: "text-sm rounded-md px-3 py-1.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
+                </div>
+              <% end %>
+            </div>
+          </article>
+        <% end %>
+      <% else %>
+        <p class="text-center my-16 text-gray-500">No posts found.</p>
+      <% end %>
+    </div>
   </div>
 </div>

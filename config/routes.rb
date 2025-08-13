@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
   root to: "posts#index"
 
-  resources :posts do
-    get "search", on: :collection
-  end
+  resources :posts
 
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -11,8 +11,8 @@
       <!-- Search Field -->
       <div class="flex-shrink-0 w-64">
         <div class="relative">
-          <%= form_with url: search_posts_path, method: :get, local: true, class: "w-full" do |form| %>
-            <%= form.text_field :search,
+          <%= form_with url: root_path, method: :get, local: true, class: "w-full" do |form| %>
+            <%= form.text_field :term,
                                 placeholder: "Search posts...",
                                 class: "w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200" %>
             <div class="absolute inset-y-0 right-0 flex items-center pr-3">
