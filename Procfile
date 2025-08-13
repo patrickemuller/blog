@@ -1,2 +1,2 @@
-release: bin/rails db:prepare
+release: bin/rails db:migrate
 web: bin/rails server
