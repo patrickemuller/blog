@@ -25,8 +25,14 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
+    <main class="container mx-auto m-10 p-5 flex flex-col">
+      <div class="w-full mb-10">
+        <%= render partial: "layouts/header" %>
+      </div>
+
+      <div class="w-full">
+        <%= yield %>
+      </div>
     </main>
   </body>
 </html>
