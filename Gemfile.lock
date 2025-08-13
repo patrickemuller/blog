@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 089808264b0b7683b5a2c3c619857579ed1c2162
+  revision: 876807830a8101ed59eff4723fefed4e73694b5e
   branch: 8-0-stable
   specs:
     actioncable (8.0.2)
@@ -158,7 +158,7 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    jbuilder (2.14.0)
+    jbuilder (2.14.1)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
     json (2.13.2)
@@ -176,7 +176,6 @@ GEM
     marcel (1.0.4)
     matrix (0.4.3)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.9)
     minitest (5.25.5)
     msgpack (1.8.0)
     net-imap (0.5.9)
@@ -250,7 +249,7 @@ GEM
       erb
       psych (>= 4.0.0)
     redcarpet (3.6.1)
-    regexp_parser (2.11.1)
+    regexp_parser (2.11.2)
     reline (0.6.2)
       io-console (~> 0.5)
     responders (3.1.1)
@@ -276,7 +275,7 @@ GEM
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.38.0, < 2.0)
-    rubocop-rails (2.33.1)
+    rubocop-rails (2.33.3)
       activesupport (>= 4.2.0)
       lint_roller (~> 1.1)
       rack (>= 1.1)
@@ -287,16 +286,21 @@ GEM
       rubocop-performance (>= 1.24)
       rubocop-rails (>= 2.30)
     ruby-progressbar (1.13.0)
-    rubyzip (2.4.1)
+    rubyzip (3.0.1)
     securerandom (0.4.1)
-    selenium-webdriver (4.34.0)
+    selenium-webdriver (4.35.0)
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
-      rubyzip (>= 1.2.2, < 3.0)
+      rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
-    sqlite3 (2.0.4)
-      mini_portile2 (~> 2.8.0)
+    sqlite3 (2.7.3-aarch64-linux-gnu)
+    sqlite3 (2.7.3-aarch64-linux-musl)
+    sqlite3 (2.7.3-arm-linux-gnu)
+    sqlite3 (2.7.3-arm-linux-musl)
+    sqlite3 (2.7.3-arm64-darwin)
+    sqlite3 (2.7.3-x86_64-linux-gnu)
+    sqlite3 (2.7.3-x86_64-linux-musl)
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.1.7)
@@ -353,20 +357,20 @@ DEPENDENCIES
   brakeman
   capybara
   debug
-  devise (~> 4.9)
-  factory_bot_rails (~> 6.5)
-  friendly_id (~> 5.5.0)
+  devise
+  factory_bot_rails
+  friendly_id
   importmap-rails
   jbuilder
-  pg (~> 1.1)
+  pg
   propshaft
   puma (>= 5.0)
   rails!
-  redcarpet (~> 3.6.1)
-  rouge (~> 4.6.0)
+  redcarpet
+  rouge
   rubocop-rails-omakase
   selenium-webdriver
-  sqlite3 (~> 2.0.2)
+  sqlite3
   stimulus-rails
   tailwindcss-rails
   thruster
