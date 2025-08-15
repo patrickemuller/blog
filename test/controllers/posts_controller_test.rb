@@ -12,7 +12,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new when authenticated as admin" do
-    sign_in @admin
+    login_as @admin
     get new_post_url
     assert_response :success
   end
@@ -23,7 +23,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create post when authenticated as admin" do
-    sign_in @admin
+    login_as @admin
     post_attributes = FactoryBot.attributes_for(:post)
 
     assert_difference("Post.count") do
@@ -49,7 +49,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get edit when authenticated as admin" do
-    sign_in @admin
+    login_as @admin
     get edit_post_url(@post)
     assert_response :success
   end
@@ -60,7 +60,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update post when authenticated as admin" do
-    sign_in @admin
+    login_as @admin
     updated_attributes = FactoryBot.attributes_for(:post)
 
     patch post_url(@post), params: { post: updated_attributes }
@@ -75,7 +75,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy post when authenticated as admin" do
-    sign_in @admin
+    login_as @admin
     assert_difference("Post.count", -1) do
       delete post_url(@post)
     end
