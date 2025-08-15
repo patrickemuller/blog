@@ -1,23 +1,23 @@
 <div class="mx-auto w-full max-w-md px-4 sm:px-6 lg:px-8 py-10">
-  <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Log in</h2>
+  <h2 class="text-3xl font-extrabold text-gray-900 dark:text-gray-100 mb-6">Log in</h2>
 
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="my-5">
-      <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full border-gray-400 focus:outline-blue-600" %>
+      <%= f.label :email, class: "block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full border-gray-400 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-blue-600" %>
     </div>
 
     <div class="my-5">
-      <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
-      <%= f.password_field :password, autocomplete: "current-password", class: "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full border-gray-400 focus:outline-blue-600" %>
+      <%= f.label :password, class: "block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full border-gray-400 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-blue-600" %>
     </div>
 
     <% if devise_mapping.rememberable? %>
       <div class="my-5 flex items-center gap-2">
-        <%= f.check_box :remember_me, class: "h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" %>
-        <%= f.label :remember_me, class: "text-sm text-gray-700" %>
+        <%= f.check_box :remember_me, class: "h-4 w-4 rounded border-gray-300 dark:border-gray-700 text-blue-600 focus:ring-blue-500" %>
+        <%= f.label :remember_me, class: "text-sm text-gray-700 dark:text-gray-300" %>
       </div>
     <% end %>
 

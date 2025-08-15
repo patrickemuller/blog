@@ -1,34 +1,43 @@
-<header class="bg-white shadow-sm border-b border-gray-200">
+<header class="bg-white dark:bg-gray-950 shadow-sm border-b border-gray-200 dark:border-gray-800">
   <div class="w-full mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
-      <!-- Site Name/Logo -->
+      <!-- Site Name/Logo - Left -->
       <div class="flex-shrink-0">
-        <%= link_to root_path, class: "text-2xl font-bold text-gray-900 hover:text-gray-700 transition-colors duration-200" do %>
+        <%= link_to root_path, class: "text-2xl font-bold text-gray-900 dark:text-gray-100 hover:text-gray-700 hover:dark:text-gray-300 transition-colors duration-200" do %>
           Patrick's Blog
         <% end %>
       </div>
 
-      <!-- Search Field -->
-      <div class="flex-shrink-0 w-64">
-        <div class="relative">
-          <%= form_with url: root_path, method: :get, local: true, class: "w-full" do |form| %>
-            <%= form.text_field :term,
-                                placeholder: "Search posts...",
-                                class: "w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200" %>
-            <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-              <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-              </svg>
-            </div>
-          <% end %>
+      <!-- Search Field - Center -->
+      <div class="flex-1 flex justify-center px-4">
+        <div class="w-64 max-w-md">
+          <div class="relative">
+            <%= form_with url: root_path, method: :get, local: true, class: "w-full" do |form| %>
+              <%= form.text_field :term,
+                                  placeholder: "Search posts...",
+                                  class: "w-full px-4 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200" %>
+              <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                <svg class="w-5 h-5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
 
-      <% if user_signed_in? %>
-        <div class="flex-shrink-0">
+      <!-- SVG + Sign Out - Far Right -->
+      <div class="flex items-center space-x-3 flex-shrink-0">
+        <span class="cursor-pointer" data-controller="dark-theme" data-action="click->dark-theme#toggle">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
+          </svg>
+        </span>
+
+        <% if user_signed_in? %>
           <%= link_to "Sign Out", destroy_user_session_path, class: "text-sm rounded-md px-3 py-1.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_method: :delete, turbo_confirm: "Are you sure you wanna logout?" } %>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </header>

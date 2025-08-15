@@ -1,10 +1,10 @@
 <% content_for :title, "Editing post" %>
 
 <div class="w-full mx-auto py-8">
-  <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900">Editing post</h1>
+  <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100">Editing post</h1>
 
   <%= render "form", post: @post %>
 
-  <%= link_to "Show this post", @post, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= link_to "Back to posts", posts_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+  <%= link_to "Show this post", @post, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 dark:bg-gray-800 hover:dark:bg-gray-700 dark:text-gray-100 inline-block font-medium" %>
+  <%= link_to "Back to posts", posts_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 dark:bg-gray-800 hover:dark:bg-gray-700 dark:text-gray-100 inline-block font-medium" %>
 </div>
