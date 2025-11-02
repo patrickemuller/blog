@@ -4,7 +4,7 @@ FactoryBot.define do
     password { "password" }
 
     trait :admin do
-      email { "admin@example.com" }
+      email { "developer@example.com" }
     end
   end
 end
