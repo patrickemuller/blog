@@ -15,31 +15,6 @@ services:
       timeout: 5s
       retries: 5
 
-  opensearch:
-    image: opensearchproject/opensearch:3.3.2
-    environment:
-      - discovery.type=single-node
-      - bootstrap.memory_lock=true
-      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
-      - "DISABLE_SECURITY_PLUGIN=true"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-      nofile:
-        soft: 65536
-        hard: 65536
-    ports:
-      - "9200:9200"
-      - "9600:9600"
-    volumes:
-      - opensearch_data:/usr/share/opensearch/data
-    healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
   #  redis:
   #    image: redis:7-alpine
   #    ports:
@@ -63,7 +38,6 @@ services:
       RAILS_ENV: development
       DATABASE_URL: postgres://postgres:postgres@db:5432/blog_development
       #      REDIS_URL: redis://redis:6379/0
-      OPENSEARCH_URL: http://opensearch:9200
       RAILS_MAX_THREADS: 5
     volumes:
       - .:/rails
@@ -74,8 +48,6 @@ services:
       - "3000:3000"
     depends_on:
       db:
-        condition: service_healthy
-      opensearch:
         condition: service_healthy
     #      redis:
     #        condition: service_healthy
@@ -121,7 +93,6 @@ services:
 
 volumes:
   postgres_data:
-  opensearch_data:
   redis_data:
   bundle_cache:
   node_modules:

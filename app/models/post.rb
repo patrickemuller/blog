@@ -4,10 +4,25 @@ class Post < ApplicationRecord
 
   friendly_id :title, use: :slugged
 
-  searchkick word_start: [ :title, :body ],
-             word_middle: [ :title, :body ]
-
   validates :title, :body, presence: true
+
+  # PostgreSQL full-text search
+  def self.search(query)
+    if query.blank?
+      all
+    else
+      # For short queries or numeric queries, use ILIKE for substring matching
+      # to match word_start and word_middle behavior from Searchkick
+      if query.length <= 3 || query.match?(/^\d+$/)
+        where("title ILIKE ? OR body ILIKE ?", "%#{sanitize_sql_like(query)}%", "%#{sanitize_sql_like(query)}%")
+          .order(created_at: :desc)
+      else
+        # Use full-text search for longer queries with relevance ranking
+        where("search_vector @@ plainto_tsquery('english', ?)", query)
+          .order(Arel.sql("ts_rank(search_vector, plainto_tsquery('english', #{connection.quote(query)})) DESC"))
+      end
+    end
+  end
 
   def formatted_body
     highlighted_body = Redcarpet::Markdown.new(::SyntaxHighlighting.new, {
