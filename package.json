@@ -1,5 +1,5 @@
 {
-  "name": "blog-railway-config",
+  "name": "blog",
   "private": true,
   "devDependencies": {
     "railway": "3.12.0"
