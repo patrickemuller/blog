@@ -1,0 +1,7 @@
+{
+  "name": "blog-railway-config",
+  "private": true,
+  "devDependencies": {
+    "railway": "3.12.0"
+  }
+}

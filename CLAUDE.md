@@ -60,6 +60,18 @@ bundle exec brakeman
 bin/rails searchkick:reindex CLASS=Post
 ```
 
+### Deployment (Railway)
+
+Railway deploys `main` from GitHub. Service settings for `web` live in `.railway/railway.ts` (Railway IaC, partial `web`; Postgres is managed in the dashboard). Railway does not read this file during deploys; changes go through the CLI (`npm install` first for the `railway` SDK):
+
+```bash
+railway config plan    # preview; must not delete source, domains, or variables
+railway config apply
+```
+
+- Omitting `source`, `domains`, or a variable from the file deletes it on apply; existing secrets are declared as `preserve()`
+- Pre-deploy runs `bin/rails db:prepare` (migrations) before the new release takes traffic; the `/up` healthcheck must return 200 within 60s or the deploy fails and the old release keeps serving
+
 ## Architecture
 
 ### Markdown Rendering

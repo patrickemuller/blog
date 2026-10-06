@@ -41,3 +41,6 @@
 
 # Blog post drafts
 .agents/*
+
+# Railway IaC SDK
+/node_modules/
