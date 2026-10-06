@@ -1,0 +1,46 @@
+<%# SEO / social-share metadata for a single post. Rendered into the layout's <head> via content_for :head. %>
+<%# Publish/modify dates are deliberately omitted everywhere (batch-published posts would share one date). %>
+<% site_name = "Patrick's Blog" %>
+<% author = "Patrick Edgar Muller" %>
+<% url = post_url(post) %>
+<% image = image_url("/icon.png") %>
+<% description = post.meta_description %>
+
+<meta name="description" content="<%= description %>">
+<meta name="author" content="<%= author %>">
+<link rel="canonical" href="<%= url %>">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="<%= site_name %>">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="<%= post.title %>">
+<meta property="og:description" content="<%= description %>">
+<meta property="og:url" content="<%= url %>">
+<meta property="og:image" content="<%= image %>">
+<meta property="article:author" content="<%= author %>">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="<%= post.title %>">
+<meta name="twitter:description" content="<%= description %>">
+<meta name="twitter:image" content="<%= image %>">
+
+<%# to_json escapes <, > and & (ActiveSupport.escape_html_entities_in_json), so html_safe cannot close the script tag. %>
+<script type="application/ld+json"><%= {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: post.title,
+  description: description,
+  url: url,
+  mainEntityOfPage: { "@type": "WebPage", "@id": url },
+  image: image,
+  author: {
+    "@type": "Person",
+    name: author,
+    sameAs: [
+      "https://www.linkedin.com/in/patrickemuller/",
+      "https://github.com/patrickemuller",
+      "https://www.toptal.com/resume/patrick-edgar-muller"
+    ]
+  },
+  publisher: { "@type": "Person", name: author }
+}.to_json.html_safe %></script>

@@ -48,6 +48,36 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "show emits escaped meta description from summary" do
+    @post.update!(summary: %(Parsing "agent" output <safely>))
+
+    get post_url(@post)
+
+    assert_select %(meta[name="description"][content=?]), %(Parsing "agent" output <safely>)
+    assert_select %(meta[property="og:description"])
+  end
+
+  test "show falls back to body excerpt for meta description without summary" do
+    @post.update!(summary: nil, body: "First words of the post body.")
+
+    get post_url(@post)
+
+    assert_select %(meta[name="description"][content=?]), "First words of the post body."
+  end
+
+  test "post dates are not exposed on index, show, or JSON" do
+    @post.update_columns(created_at: Time.utc(2024, 3, 7, 9), updated_at: Time.utc(2024, 3, 8, 9))
+
+    [ posts_url, post_url(@post), posts_url(format: :json), post_url(@post, format: :json) ].each do |url|
+      get url
+
+      assert_response :success
+      [ "2024-03-07", "2024-03-08", "March 7, 2024", "March 8, 2024" ].each do |date|
+        assert_not_includes response.body, date, "#{url} exposes #{date}"
+      end
+    end
+  end
+
   test "should get edit when authenticated as admin" do
     login_as @admin
     get edit_post_url(@post)

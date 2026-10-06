@@ -68,6 +68,7 @@ Posts are written in Markdown and rendered to HTML with syntax highlighting:
 
 - `Post#formatted_body` (app/models/post.rb:12) renders Markdown using Redcarpet
 - `SyntaxHighlighting` (app/parsers/syntax_highlighting.rb) integrates Rouge for code highlighting
+- ` ```mermaid ` fences skip Rouge and render as `<pre class="mermaid">`; the `mermaid` Stimulus controller (app/javascript/controllers/mermaid_controller.js) lazy-loads Mermaid from jsDelivr (pinned in config/importmap.rb) and re-renders on dark-mode toggle
 - Output is sanitized to allow only safe HTML tags and attributes
 
 ### URL Slugs
@@ -100,6 +101,7 @@ Posts are searchable using Searchkick:
   - Uses FriendlyId for slug generation from title
   - Indexed by Searchkick for full-text search
   - `formatted_body` method renders Markdown with syntax highlighting
+  - `meta_description` returns `summary` (≤160 chars) or a 160-char plain-text body excerpt; used by `posts/_seo.html.erb`, which `show` injects into the layout's `yield :head` (meta description, canonical, Open Graph, Twitter card, BlogPosting JSON-LD)
 
 - **User** - Authenticated users who can manage posts
   - Minimal Devise configuration (database authenticatable, rememberable, validatable)

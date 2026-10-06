@@ -1,4 +1,5 @@
-<% content_for :title, "Patrick's Blog | #{@post.title}" %>
+<% content_for :title, "#{@post.title} | Patrick's Blog" %>
+<% content_for :head, render("posts/seo", post: @post) %>
 
 <div class="w-full">
   <div class="">

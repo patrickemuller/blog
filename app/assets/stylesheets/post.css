@@ -68,3 +68,28 @@
 .post-content > pre > code {
   text-wrap: auto;
 }
+
+.post-content > pre.mermaid {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+  text-align: left;
+}
+
+.post-content table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.post-content th,
+.post-content td {
+  border: 1px solid #d1d5db;
+  padding: 0.5rem 0.75rem;
+}
+
+.post-content th {
+  font-weight: 700;
+}

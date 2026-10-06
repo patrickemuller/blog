@@ -6,6 +6,9 @@ class Post < ApplicationRecord
 
   validates :title, :body, presence: true
 
+  META_DESCRIPTION_LENGTH = 160
+  validates :summary, length: { maximum: META_DESCRIPTION_LENGTH }
+
   # PostgreSQL full-text search
   def self.search(query)
     if query.blank?
@@ -26,13 +29,19 @@ class Post < ApplicationRecord
 
   def formatted_body
     highlighted_body = Redcarpet::Markdown.new(::SyntaxHighlighting.new, {
-      fenced_code_blocks: true
+      fenced_code_blocks: true,
+      tables: true
     }).render(body)
 
     sanitize(
       highlighted_body,
-      tags: %w[h1 h2 h3 h4 h5 h6 p br strong em ul ol li blockquote pre code a span],
+      tags: %w[h1 h2 h3 h4 h5 h6 p br strong em ul ol li blockquote pre code a span table thead tbody tr th td],
       attributes: %w[href class]
     )
+  end
+
+  # Author-provided summary, else a plain-text excerpt of the rendered body.
+  def meta_description
+    summary.presence || strip_tags(formatted_body).squish.truncate(META_DESCRIPTION_LENGTH, separator: " ")
   end
 end
