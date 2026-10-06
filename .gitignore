@@ -38,3 +38,6 @@
 
 # Ignore IntelliJ files
 .idea/*
+
+# Blog post drafts
+.agents/*
