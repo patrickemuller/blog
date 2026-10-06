@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a personal blog application built with Rails 8. Posts are written in Markdown with syntax highlighting via Rouge, and URLs are generated using FriendlyId slugs. Full-text search is powered by Searchkick (OpenSearch/Elasticsearch). Authentication uses Devise with minimal configuration (users can only sign in, not register).
+This is a personal blog application built with Rails 8.1. Posts are written in Markdown with syntax highlighting via Rouge, and URLs are generated using FriendlyId slugs. Full-text search is powered by Searchkick (OpenSearch/Elasticsearch). Authentication uses Devise with minimal configuration (users can only sign in, not register).
 
 ## Development Commands
 
@@ -102,6 +102,7 @@ Posts are searchable using Searchkick:
   - Indexed by Searchkick for full-text search
   - `formatted_body` method renders Markdown with syntax highlighting
   - `meta_description` returns `summary` (≤160 chars) or a 160-char plain-text body excerpt; used by `posts/_seo.html.erb`, which `show` injects into the layout's `yield :head` (meta description, canonical, Open Graph, Twitter card, BlogPosting JSON-LD)
+  - `to_markdown` (title, `> summary`, raw body) backs `GET /posts/:slug.md` and `Accept: text/markdown` via Rails 8.1's `render markdown:`; `GET /llms.txt` renders `posts/index.md.erb` (use `<%==` there: ERB HTML-escapes `text/markdown`)
 
 - **User** - Authenticated users who can manage posts
   - Minimal Devise configuration (database authenticatable, rememberable, validatable)

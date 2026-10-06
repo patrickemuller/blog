@@ -1,0 +1,9 @@
+# Patrick's Blog
+
+> Technical posts by Patrick Edgar Muller. Every post is available as Markdown by appending `.md` to its URL.
+
+## Posts
+
+<% @posts.each do |post| -%>
+- [<%== post.title %>](<%== post_url(post, format: :md) %>): <%== post.meta_description %>
+<% end -%>

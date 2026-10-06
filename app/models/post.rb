@@ -44,4 +44,9 @@ class Post < ApplicationRecord
   def meta_description
     summary.presence || strip_tags(formatted_body).squish.truncate(META_DESCRIPTION_LENGTH, separator: " ")
   end
+
+  # Raw Markdown for LLMs and other machine readers; used by `render markdown:`.
+  def to_markdown
+    [ "# #{title}", ("> #{summary}" if summary.present?), body ].compact.join("\n\n")
+  end
 end

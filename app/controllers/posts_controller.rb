@@ -9,6 +9,11 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.json
+      format.md { render markdown: @post }
+    end
   end
 
   # GET /posts/new

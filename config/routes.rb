@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   resources :posts
 
+  # Markdown index of all posts for LLMs (https://llmstxt.org)
+  get "llms.txt" => "posts#index", format: false, defaults: { format: :md }, as: :llms_txt
+
   devise_for :users, skip: [ :registrations ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

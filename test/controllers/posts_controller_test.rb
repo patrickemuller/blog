@@ -65,6 +65,36 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_select %(meta[name="description"][content=?]), "First words of the post body."
   end
 
+  test "show serves raw markdown via .md and Accept header" do
+    @post.update!(title: "Q&A <tips>", summary: "Short & sweet", body: "## Heading\n\n```mermaid\nA --> B\n```")
+    expected = "# Q&A <tips>\n\n> Short & sweet\n\n## Heading\n\n```mermaid\nA --> B\n```"
+
+    get post_url(@post, format: :md)
+    assert_equal "text/markdown", response.media_type
+    assert_equal expected, response.body
+
+    get post_url(@post), headers: { "Accept" => "text/markdown" }
+    assert_equal "text/markdown", response.media_type
+    assert_equal expected, response.body
+    assert_includes response.headers["Vary"].to_s, "Accept"
+  end
+
+  test "show advertises the markdown alternate" do
+    get post_url(@post)
+
+    assert_select %(link[rel="alternate"][type="text/markdown"][href=?]), post_url(@post, format: :md)
+  end
+
+  test "llms.txt lists every post with an unescaped markdown link" do
+    @post.update!(title: "Q&A <tips>", summary: "Short & sweet")
+
+    get llms_txt_url
+
+    assert_response :success
+    assert_equal "text/markdown", response.media_type
+    assert_includes response.body, "- [Q&A <tips>](#{post_url(@post, format: :md)}): Short & sweet"
+  end
+
   test "post dates are not exposed on index, show, or JSON" do
     @post.update_columns(created_at: Time.utc(2024, 3, 7, 9), updated_at: Time.utc(2024, 3, 8, 9))
 
